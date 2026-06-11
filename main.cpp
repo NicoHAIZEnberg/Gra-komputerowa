@@ -3,12 +3,15 @@
 #include <ctime> 
 using namespace std;
 int main(){
-    int iloscbomb;
     int planszabomb[4][4]={{0,0,0,0},
                        {0,0,0,0},
                        {0,0,0,0},
                        {0,0,0,0}};
                        int planszaodkryta[4][4]={{0,0,0,0},
+                       {0,0,0,0},
+                       {0,0,0,0},
+                       {0,0,0,0}};
+                       int planszazakryta[4][4]={{0,0,0,0},
                        {0,0,0,0},
                        {0,0,0,0},
                        {0,0,0,0}};
@@ -44,9 +47,54 @@ if (wybor==1)
             if(planszabomb[i][j]==1)
             {
                 planszaodkryta[i][j]=9;
-                iloscbomb++;
             }
-            cout<<planszaodkryta[i][j]<<" ";
+          else if (planszabomb[i][j]==0)
+            {
+                int licznik=0;
+                if (i-1>=0 && j-1>=0 && planszabomb[i-1][j-1]==1)
+                {
+                    licznik++;
+                }
+                if (i-1>=0 && planszabomb[i-1][j]==1)
+                {
+                    licznik++;
+                }
+                if (i-1>=0 && j+1<4 && planszabomb[i-1][j+1]==1)
+                {
+                    licznik++;
+                }
+                if (j-1>=0 && planszabomb[i][j-1]==1)
+                {
+                    licznik++;
+                }
+                if (j+1<4 && planszabomb[i][j+1]==1)
+                {
+                    licznik++;
+                }
+                if (i+1<4 && j-1>=0 && planszabomb[i+1][j-1]==1)
+                {
+                    licznik++;
+                }
+                if (i+1<4 && planszabomb[i+1][j]==1)
+                {
+                    licznik++;
+                }
+                if (i+1<4 && j+1<4 && planszabomb[i+1][j+1]==1)
+                {
+                    licznik++;
+                }
+                
+               planszaodkryta[i][j]=licznik;
+            }
+            if(planszaodkryta[i][j]==0)
+            {
+                planszazakryta[i][j]=0;
+            }
+            else if(planszaodkryta[i][j]==9)
+            {
+                planszazakryta[i][j]=1;
+            }
+            cout<<planszazakryta[i][j]<<" ";
         }
         cout<<endl;
     }
@@ -66,7 +114,7 @@ if (wybor==2)
 }
 else
 {
-  return 0; /* code */
+  return 0;
 }
 
 
